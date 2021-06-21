@@ -1,0 +1,10 @@
+JAXBContext jc2 = JAXBContext.newInstance(Fac_Cabecera.class);
+            Unmarshaller unmarshaller2 = jc2.createUnmarshaller();
+            StreamSource streamSource2 = new StreamSource(new StringReader(data2));
+            JAXBElement<Fac_Cabecera> je2 = unmarshaller2.unmarshal(streamSource2, Fac_Cabecera.class);
+            Fac_Cabecera ebj_1 = (Fac_Cabecera) je2.getValue();
+            servicio_web = servicio.getClienteServicePort();
+           imp+=("Factura:" + ebj_1.getCabId()+"\n\n");
+           total=ebj_1.getCabSubt();
+           imp+=("Cedula:" + ebj_1.getCabCi() + "\nNombre:"+ servicio_web.nombre(ebj_1.getCabCi())+ "\tEdad:" +(Calendar.getInstance().get(Calendar.YEAR)-Integer.parseInt(servicio_web.anio(ebj_1.getCabCi())))+"\n");
+            imp+=("\nDetalle\n\n");
